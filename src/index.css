@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-display: 'Cinzel', serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: #1A1815;
+    background-color: #FAF7F2;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: var(--font-serif);
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: 0.05em;
+  }
+}
+
+/* Custom luxury light scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF7F2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D9C5A5;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B99B69;
+}
+
+/* Dynamic island & floating pill animations */
+@keyframes islandPulse {
+  0% { box-shadow: 0 10px 25px -5px rgba(185, 155, 105, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.04); }
+  50% { box-shadow: 0 20px 35px -5px rgba(185, 155, 105, 0.25), 0 8px 10px -6px rgba(0, 0, 0, 0.06); }
+  100% { box-shadow: 0 10px 25px -5px rgba(185, 155, 105, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.04); }
+}
+
+.island-shadow {
+  animation: islandPulse 4s infinite ease-in-out;
+}
+
+/* Custom cursor styling for desktop */
+@media (pointer: fine) {
+  .cursor-glow {
+    pointer-events: none;
+    position: fixed;
+    z-index: 9999;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.25s ease-out, height 0.25s ease-out, background-color 0.2s ease-out, border-color 0.2s ease-out, opacity 0.2s ease-out;
+  }
+}
+
+/* Light Luxury Gradient Accents & Atmospheric Glows */
+.luxury-gradient-text {
+  background: linear-gradient(135deg, #1A1815 15%, #7D633E 60%, #B99B69 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.luxury-mesh-bg {
+  background-color: #FAF7F2;
+  background-image: 
+    radial-gradient(at 15% 15%, rgba(217, 197, 165, 0.22) 0px, transparent 50%),
+    radial-gradient(at 85% 85%, rgba(185, 155, 105, 0.16) 0px, transparent 55%),
+    radial-gradient(at 50% 50%, rgba(245, 239, 230, 0.4) 0px, transparent 60%);
+}
+
+.luxury-glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 214, 195, 0.85);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.luxury-glass-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(185, 155, 105, 0.55);
+  box-shadow: 0 20px 40px -15px rgba(185, 155, 105, 0.22);
+}
+
