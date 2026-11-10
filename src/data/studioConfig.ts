@@ -67,11 +67,11 @@ export const STUDIO_CONFIG = {
   pricingDisclaimer:
     'All package prices and inclusions displayed are provisional demonstration quotes. Exact customized proposals will be provided during your private consultation with the studio.',
   primaryImages: {
-    heroWedding: '/src/assets/images/hero_cinematic_wedding_1794312752689.jpg',
-    weddingReception: '/src/assets/images/wedding_reception_editorial_1794312752245.jpg',
-    maternityIvory: '/src/assets/images/maternity_warm_ivory_1794312752963.jpg',
-    outdoorSunset: '/src/assets/images/outdoor_sunset_portrait_1794312752857.jpg',
-    celebrationBabyShower: '/src/assets/images/celebration_baby_shower_1794312753932.jpg',
+    heroWedding: '/images/hero_cinematic_wedding_1794312752689.jpg',
+    weddingReception: '/images/wedding_reception_editorial_1794312752245.jpg',
+    maternityIvory: '/images/maternity_warm_ivory_1794312752963.jpg',
+    outdoorSunset: '/images/outdoor_sunset_portrait_1794312752857.jpg',
+    celebrationBabyShower: '/images/celebration_baby_shower_1794312753932.jpg',
   },
 };
 
