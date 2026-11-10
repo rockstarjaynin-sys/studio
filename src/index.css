@@ -5,23 +5,216 @@
     --font-serif: 'Cormorant Garamond', Georgia, serif;
     --font-display: 'Cinzel', serif;
     --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --page-bg: #FAF7F2;
+    --page-text: #1A1815;
+    --page-panel: rgba(255, 255, 255, 0.84);
+    --page-card: #FFFFFF;
+    --page-soft: #F2EDE4;
+    --page-muted: #6b7280;
+    --page-accent: #B99B69;
+    --page-accent-strong: #D9C5A5;
+  }
+
+  html[data-theme='dark'] {
+    --page-bg: #121212;
+    --page-text: #F5F0E8;
+    --page-panel: rgba(28, 28, 32, 0.88);
+    --page-card: #1D1D22;
+    --page-soft: #1F2430;
+    --page-muted: #d6d3d1;
+    --page-accent: #d1a76a;
+    --page-accent-strong: #f0d4a2;
+    color-scheme: dark;
+  }
+
+  html[data-theme='gradient'] {
+    --page-bg: linear-gradient(135deg, #240b36 0%, #0f172a 30%, #1e1b4b 60%, #7c2d12 100%);
+    --page-text: #F9F3EB;
+    --page-panel: rgba(34, 20, 47, 0.7);
+    --page-card: rgba(26, 26, 46, 0.75);
+    --page-soft: rgba(76, 29, 149, 0.3);
+    --page-muted: #ede9fe;
+    --page-accent: #f9a8d4;
+    --page-accent-strong: #fbbf24;
+    color-scheme: dark;
+  }
+
+  html {
+    background: var(--page-bg);
   }
 
   body {
     font-family: var(--font-sans);
-    color: #1A1815;
-    background-color: #FAF7F2;
+    color: var(--page-text);
+    background: var(--page-bg);
     overflow-x: hidden;
   }
 
   h1, h2, h3, .font-serif {
     font-family: var(--font-serif);
+    color: var(--page-text);
   }
 
   .font-display {
     font-family: var(--font-display);
     letter-spacing: 0.05em;
   }
+}
+
+.app-shell {
+  background: var(--page-bg);
+  color: var(--page-text);
+}
+
+.app-shell.theme-dark,
+.app-shell.theme-gradient {
+  background: var(--page-bg);
+}
+
+.app-shell.theme-dark {
+  background: #121212 !important;
+  color: #F5F0E8 !important;
+}
+
+.app-shell.theme-gradient {
+  background: linear-gradient(135deg, #240b36 0%, #0f172a 30%, #1e1b4b 60%, #7c2d12 100%) !important;
+  color: #F9F3EB !important;
+}
+
+.app-shell.theme-dark main,
+.app-shell.theme-dark section,
+.app-shell.theme-dark footer,
+.app-shell.theme-dark .bg-[#F5EFE6],
+.app-shell.theme-dark .bg-[#F3EDE2],
+.app-shell.theme-dark .bg-[#FAF7F2],
+.app-shell.theme-dark .bg-[#FFFDF9] {
+  background-color: #171717 !important;
+}
+
+.app-shell.theme-gradient main,
+.app-shell.theme-gradient section,
+.app-shell.theme-gradient footer,
+.app-shell.theme-gradient .bg-[#F5EFE6],
+.app-shell.theme-gradient .bg-[#F3EDE2],
+.app-shell.theme-gradient .bg-[#FAF7F2],
+.app-shell.theme-gradient .bg-[#FFFDF9] {
+  background-color: rgba(15, 23, 42, 0.72) !important;
+}
+
+.app-shell.theme-dark .luxury-glass-card,
+.app-shell.theme-gradient .luxury-glass-card {
+  background: var(--page-panel);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.app-shell.theme-dark .bg-white,
+.app-shell.theme-dark .bg-[#FAF7F2],
+.app-shell.theme-dark .bg-[#FFFDF9],
+.app-shell.theme-dark .bg-stone-50,
+.app-shell.theme-dark .bg-stone-100,
+.app-shell.theme-dark .bg-stone-200,
+.app-shell.theme-dark [class*='bg-white'],
+.app-shell.theme-dark [class*='bg-\[\#FAF7F2\]'],
+.app-shell.theme-dark [class*='bg-\[\#FFFDF9\]'],
+.app-shell.theme-dark [class*='bg-stone-'],
+.app-shell.theme-gradient .bg-white,
+.app-shell.theme-gradient .bg-[#FAF7F2],
+.app-shell.theme-gradient .bg-[#FFFDF9],
+.app-shell.theme-gradient .bg-stone-50,
+.app-shell.theme-gradient .bg-stone-100,
+.app-shell.theme-gradient .bg-stone-200,
+.app-shell.theme-gradient [class*='bg-white'],
+.app-shell.theme-gradient [class*='bg-\[\#FAF7F2\]'],
+.app-shell.theme-gradient [class*='bg-\[\#FFFDF9\]'],
+.app-shell.theme-gradient [class*='bg-stone-'] {
+  background-color: var(--page-card) !important;
+}
+
+.app-shell.theme-dark .text-stone-600,
+.app-shell.theme-dark .text-stone-700,
+.app-shell.theme-dark .text-stone-500,
+.app-shell.theme-dark .text-stone-800,
+.app-shell.theme-dark .text-stone-900,
+.app-shell.theme-dark p,
+.app-shell.theme-dark span,
+.app-shell.theme-dark li,
+.app-shell.theme-dark a,
+.app-shell.theme-dark h1,
+.app-shell.theme-dark h2,
+.app-shell.theme-dark h3,
+.app-shell.theme-dark h4,
+.app-shell.theme-dark label,
+.app-shell.theme-dark button,
+.app-shell.theme-gradient .text-stone-600,
+.app-shell.theme-gradient .text-stone-700,
+.app-shell.theme-gradient .text-stone-500,
+.app-shell.theme-gradient .text-stone-800,
+.app-shell.theme-gradient .text-stone-900,
+.app-shell.theme-gradient p,
+.app-shell.theme-gradient span,
+.app-shell.theme-gradient li,
+.app-shell.theme-gradient a,
+.app-shell.theme-gradient h1,
+.app-shell.theme-gradient h2,
+.app-shell.theme-gradient h3,
+.app-shell.theme-gradient h4,
+.app-shell.theme-gradient label,
+.app-shell.theme-gradient button {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.app-shell.theme-dark .text-[#1A1815],
+.app-shell.theme-dark .text-[#1A1815] *,
+.app-shell.theme-gradient .text-[#1A1815],
+.app-shell.theme-gradient .text-[#1A1815] * {
+  color: var(--page-text) !important;
+}
+
+.app-shell.theme-dark .bg-emerald-50,
+.app-shell.theme-dark .bg-stone-100,
+.app-shell.theme-dark .bg-stone-50,
+.app-shell.theme-dark [class*='bg-white/70'],
+.app-shell.theme-dark [class*='bg-white/95'],
+.app-shell.theme-gradient .bg-emerald-50,
+.app-shell.theme-gradient .bg-stone-100,
+.app-shell.theme-gradient .bg-stone-50,
+.app-shell.theme-gradient [class*='bg-white/70'],
+.app-shell.theme-gradient [class*='bg-white/95'] {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+.app-shell.theme-dark .border-stone-200,
+.app-shell.theme-dark .border-stone-100,
+.app-shell.theme-dark .border-[#E2D6C3],
+.app-shell.theme-dark [class*='border-stone-'],
+.app-shell.theme-dark [class*='border-\[\#E2D6C3\]'],
+.app-shell.theme-gradient .border-stone-200,
+.app-shell.theme-gradient .border-stone-100,
+.app-shell.theme-gradient .border-[#E2D6C3],
+.app-shell.theme-gradient [class*='border-stone-'],
+.app-shell.theme-gradient [class*='border-\[\#E2D6C3\]'] {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.app-shell.theme-dark .bg-gradient-to-r,
+.app-shell.theme-dark .bg-gradient-to-r * ,
+.app-shell.theme-gradient .bg-gradient-to-r,
+.app-shell.theme-gradient .bg-gradient-to-r * {
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14);
+}
+
+.app-shell.theme-dark .text-emerald-800,
+.app-shell.theme-dark .text-emerald-600,
+.app-shell.theme-gradient .text-emerald-800,
+.app-shell.theme-gradient .text-emerald-600 {
+  color: #d1fae5 !important;
+}
+
+.app-shell.theme-dark .text-white,
+.app-shell.theme-dark .text-white * ,
+.app-shell.theme-gradient .text-white,
+.app-shell.theme-gradient .text-white * {
+  color: #fff !important;
 }
 
 /* Custom luxury light scrollbar */

@@ -1,34 +1,49 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import {
-  Camera,
-  Phone,
-  MessageCircle,
-  Menu,
-  X,
-  ChevronRight,
-  Folder,
-  Sparkles,
-  Heart,
-  Film,
-  Sun,
-  Cake,
-  SlidersHorizontal,
-} from 'lucide-react';
-import { STUDIO_CONFIG } from '../data/studioConfig';
+import { Camera, Menu, X, Sparkles, Heart } from 'lucide-react';
+import type { LanguageOption } from '../App';
 
 interface NavbarProps {
-  onOpenDriveModal?: () => void;
+  activeLanguage: LanguageOption;
+  setActiveLanguage: React.Dispatch<React.SetStateAction<LanguageOption>>;
 }
 
 interface NavItem {
-  label: string;
+  labelEn: string;
+  labelNe: string;
   path: string;
-  islandSnippet: string;
+  islandSnippetEn: string;
+  islandSnippetNe: string;
   icon?: React.ReactNode;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenDriveModal }) => {
+const translations = {
+  en: {
+    bookDate: 'Book Your Date',
+    language: 'Language',
+    english: 'English',
+    nepali: 'नेपाली',
+    mobileNav: 'Studio Navigation',
+    bookSession: 'Book Your Session',
+  },
+  ne: {
+    whatsapp: 'व्हाट्सएप',
+    bookDate: 'बुक गर्नुहोस्',
+    driveAssets: 'ड्राइভ',
+    language: 'भाषा',
+    english: 'English',
+    nepali: 'नेपाली',
+    theme: 'थिम',
+    light: 'उज्यालो',
+    dark: 'गाढा',
+    gradient: 'ग्रेडिएन्ट',
+    mobileNav: 'स्टुडियो नेभिगेसन',
+    chatWhatsApp: 'व्हाट्सएपमा कुरा गर्नुहोस् (+977 9801721658)',
+    bookSession: 'सेसन बुक गर्नुहोस्',
+  },
+} as const;
+
+export const Navbar: React.FC<NavbarProps> = ({ activeLanguage, setActiveLanguage }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<NavItem | null>(null);
@@ -49,39 +64,53 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDriveModal }) => {
 
   const navLinks: NavItem[] = [
     {
-      label: 'Home',
+      labelEn: 'Home',
+      labelNe: 'होम',
       path: '/',
-      islandSnippet: 'Welcome to BABA PRODUCTION STUDIO · Fine Art Photography & Cinema',
+      islandSnippetEn: 'Welcome to BABA PRODUCTION STUDIO · Fine Art Photography & Cinema',
+      islandSnippetNe: 'बाबा प्रोडक्शन स्टुडियोमा स्वागत · फाइन आर्ट फोटोग्राफी र सिनेमा',
     },
     {
-      label: 'Weddings & Cinema',
+      labelEn: 'Weddings & Cinema',
+      labelNe: 'वेडिङ्स र सिनेमा',
       path: '/weddings-cinema-outdoor',
-      islandSnippet: 'Royal Weddings · 4K Cinema Films · Outdoor Scenic · Dedicated Packages',
+      islandSnippetEn: 'Royal Weddings · 4K Cinema Films · Outdoor Scenic · Dedicated Packages',
+      islandSnippetNe: 'रॉयल वेडिङ्स · ४के सिनेमा फिल्म्स · आउटडोर लँडस्केप · विशेष प्याकेज',
       icon: <Heart className="w-3.5 h-3.5 text-[#B99B69]" />,
     },
     {
-      label: 'Maternity & Celebrations',
+      labelEn: 'Maternity & Celebrations',
+      labelNe: 'मातृत्व र उत्सव',
       path: '/maternity-celebrations',
-      islandSnippet: 'Fine Art Motherhood · Newborn Heirlooms · Baby Showers · Dedicated Packages',
+      islandSnippetEn: 'Fine Art Motherhood · Newborn Heirlooms · Baby Showers · Dedicated Packages',
+      islandSnippetNe: 'फाइन आर्ट मदरहुड · नवजातको वारिस · बेबी शावर · विशेष प्याकेज',
       icon: <Sparkles className="w-3.5 h-3.5 text-[#B99B69]" />,
     },
     {
-      label: 'Portfolio',
+      labelEn: 'Portfolio',
+      labelNe: 'पोर्टफोलियो',
       path: '/portfolio',
-      islandSnippet: 'Complete Curated 4K Gallery & Lightbox Viewer',
+      islandSnippetEn: 'Complete Curated 4K Gallery & Lightbox Viewer',
+      islandSnippetNe: 'पूरा क्युरेटेड ४के ग्यालेरी र लाइटबक्स',
       icon: <Camera className="w-3.5 h-3.5 text-[#B99B69]" />,
     },
     {
-      label: 'About Studio',
+      labelEn: 'About Studio',
+      labelNe: 'स्टुडियोको बारेमा',
       path: '/about',
-      islandSnippet: 'Artistic Story · Physical Workshop at BABA CANVAS & FRAMES',
+      islandSnippetEn: 'Artistic Story · Physical Workshop at BABA CANVAS & FRAMES',
+      islandSnippetNe: 'कलात्मक कहानी · बाबा क्यानभास र फ्रेम्समा फिजिकल वर्कशप',
     },
     {
-      label: 'Contact & Book',
+      labelEn: 'Contact & Book',
+      labelNe: 'सम्पर्क र बुक',
       path: '/contact',
-      islandSnippet: 'Reserve Your Dates · Direct WhatsApp (+977 9801721658)',
+      islandSnippetEn: 'Reserve Your Dates · Direct WhatsApp (+977 9801721658)',
+      islandSnippetNe: 'तपाईंको मिति सुरक्षित गर्नुहोस् · प्रत्यक्ष व्हाट्सएप (+977 9801721658)',
     },
   ];
+
+  const t = translations[activeLanguage];
 
   return (
     <div className="fixed top-3 sm:top-5 left-0 right-0 z-50 flex justify-center px-3 sm:px-6 pointer-events-none">
@@ -131,41 +160,32 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDriveModal }) => {
                       : 'text-stone-600 hover:text-[#1A1815] hover:bg-white/60'
                   }`}
                 >
-                  {link.label}
+                  {activeLanguage === 'ne' ? link.labelNe : link.labelEn}
                 </Link>
               );
             })}
           </nav>
 
           {/* Right Action Island */}
-          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
-            {onOpenDriveModal && (
-              <button
-                onClick={onOpenDriveModal}
-                title="Google Drive Media & Folder Hub"
-                className="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-stone-700 bg-white/70 hover:bg-white border border-stone-200 rounded-full transition-all hover:scale-105 active:scale-95 shadow-xs"
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 max-w-full flex-wrap justify-end">
+            <div className="hidden lg:flex items-center gap-1.5 rounded-full border border-[#E5DAC8]/80 bg-[#F6F1E7]/80 p-1">
+              <label className="sr-only">{t.language}</label>
+              <select
+                aria-label={t.language}
+                value={activeLanguage}
+                onChange={(e) => setActiveLanguage(e.target.value as LanguageOption)}
+                className="appearance-none rounded-full bg-transparent px-2 py-1 text-[9px] font-bold tracking-wide text-stone-700 outline-none"
               >
-                <Folder className="w-3.5 h-3.5 text-[#B99B69]" />
-                <span>Drive Assets</span>
-              </button>
-            )}
-
-            <a
-              href={STUDIO_CONFIG.whatsappUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200/80 rounded-full transition-all hover:scale-105 active:scale-95 shadow-xs"
-              title="Chat directly on WhatsApp"
-            >
-              <MessageCircle className="w-3.5 h-3.5 text-emerald-600 fill-emerald-600" />
-              <span>WhatsApp</span>
-            </a>
+                <option value="en">{t.english}</option>
+                <option value="ne">{t.nepali}</option>
+              </select>
+            </div>
 
             <Link
               to="/contact"
-              className="px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-bold text-[#1A1815] bg-gradient-to-r from-[#D9C5A5] via-[#E2D2B8] to-[#B99B69] hover:from-[#cbb284] hover:to-[#a88a58] rounded-full transition-all hover:scale-105 active:scale-95 shadow-[0_4px_12px_rgba(185,155,105,0.25)] whitespace-nowrap"
+              className="px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs font-bold text-[#1A1815] bg-gradient-to-r from-[#D9C5A5] via-[#E2D2B8] to-[#B99B69] hover:from-[#cbb284] hover:to-[#a88a58] rounded-full transition-all hover:scale-105 active:scale-95 shadow-[0_4px_12px_rgba(185,155,105,0.25)] whitespace-nowrap shrink-0"
             >
-              Book Your Date
+              {t.bookDate}
             </Link>
 
             {/* Mobile Hamburger Button */}
@@ -184,9 +204,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDriveModal }) => {
           <div className="hidden lg:flex items-center gap-2 mt-2 px-4 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-[#E0D4C0] shadow-[0_8px_20px_-4px_rgba(185,155,105,0.25)] text-xs text-[#1A1815] animate-fadeIn transition-all">
             {hoveredItem.icon || <Sparkles className="w-3.5 h-3.5 text-[#B99B69]" />}
             <span className="font-bold text-[#B99B69] uppercase font-mono text-[10px]">
-              {hoveredItem.label}:
+              {activeLanguage === 'ne' ? hoveredItem.labelNe : hoveredItem.labelEn}:
             </span>
-            <span className="text-stone-700 font-medium">{hoveredItem.islandSnippet}</span>
+            <span className="text-stone-700 font-medium">
+              {activeLanguage === 'ne' ? hoveredItem.islandSnippetNe : hoveredItem.islandSnippetEn}
+            </span>
           </div>
         )}
 
@@ -208,6 +230,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDriveModal }) => {
             <div className="grid grid-cols-2 gap-2">
               {navLinks.map((link) => {
                 const isActive = location.pathname === link.path;
+                const label = activeLanguage === 'ne' ? link.labelNe : link.labelEn;
                 return (
                   <Link
                     key={link.path}
@@ -219,28 +242,31 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDriveModal }) => {
                     }`}
                   >
                     {link.icon || <Sparkles className="w-3 h-3 text-[#B99B69]" />}
-                    <span>{link.label}</span>
+                    <span>{label}</span>
                   </Link>
                 );
               })}
             </div>
 
-            <div className="pt-3 border-t border-stone-100 space-y-2">
-              <a
-                href={STUDIO_CONFIG.whatsappUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-center gap-2 w-full py-2.5 text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-full"
-              >
-                <MessageCircle className="w-4 h-4 text-emerald-600 fill-emerald-600" />
-                <span>Chat on WhatsApp (+977 9801721658)</span>
-              </a>
+            <div className="pt-3 border-t border-stone-100 space-y-3">
+              <div className="rounded-2xl border border-stone-200 bg-stone-50 p-2">
+                <div className="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-500 mb-2">{t.language}</div>
+                <select
+                  aria-label={t.language}
+                  value={activeLanguage}
+                  onChange={(e) => setActiveLanguage(e.target.value as LanguageOption)}
+                  className="w-full rounded-xl border border-stone-200 bg-white px-2.5 py-2 text-xs font-semibold text-stone-700 outline-none"
+                >
+                  <option value="en">{t.english}</option>
+                  <option value="ne">{t.nepali}</option>
+                </select>
+              </div>
 
               <Link
                 to="/contact"
                 className="flex items-center justify-center w-full py-3 text-xs font-bold text-[#1A1815] bg-gradient-to-r from-[#D9C5A5] to-[#B99B69] rounded-full shadow-md"
               >
-                Book Your Session
+                {t.bookSession}
               </Link>
             </div>
           </div>

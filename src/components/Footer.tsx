@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, MessageCircle, Youtube, Facebook, Camera, ExternalLink, ShieldCheck } from 'lucide-react';
 import { STUDIO_CONFIG } from '../data/studioConfig';
 
-interface FooterProps {
-  onOpenDriveModal?: () => void;
-}
-
-export const Footer: React.FC<FooterProps> = ({ onOpenDriveModal }) => {
+export const Footer: React.FC = () => {
   return (
     <footer className="bg-[#F3EDE2] text-stone-700 border-t border-[#E2D6C3] pt-16 pb-12 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -153,16 +149,6 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDriveModal }) => {
               >
                 <Youtube className="w-4 h-4" />
               </a>
-              {onOpenDriveModal && (
-                <button
-                  onClick={onOpenDriveModal}
-                  aria-label="Google Drive Media Assets"
-                  className="px-3 py-1.5 text-xs rounded-full bg-white border border-[#E2D6C3] text-stone-700 hover:text-[#B99B69] hover:border-[#B99B69] hover:scale-105 transition-all shadow-xs flex items-center gap-1.5"
-                >
-                  <span>Drive Media Hub</span>
-                  <ExternalLink className="w-3 h-3 text-[#B99B69]" />
-                </button>
-              )}
             </div>
           </div>
 
